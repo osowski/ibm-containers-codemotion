@@ -72,9 +72,11 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
   6ef19c325f6fda8f5c0277337dd797d4e31113daa7da92fbe85fe70557bfcb49
   ```
 
-  Start a Let's Chat instance:    
-    $ docker run -d --name lets-chat --link lc-mongo:mongo -p 8080:8080 sdelements/lets-chat
-    4180a983e329947196e317563037bfd0da093ab89add16911de90534c69a7822
+  Start a Let's Chat instance:   
+  ```
+  $ docker run -d --name lets-chat --link lc-mongo:mongo -p 8080:8080 sdelements/lets-chat
+  4180a983e329947196e317563037bfd0da093ab89add16911de90534c69a7822
+  ```
 
 4. Access the application through your browser.  Depending on your local configuration, you may be able to use localhost as the hostname, but the most common configuration will be using `docker-machine` and will need to acquire the IP address as below.
 
@@ -86,14 +88,18 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
 5. You can now optionally stop and remove your local running containers.
 
   Stop the containers:  
-        $ docker stop lets-chat lc-mongo
-        lets-chat
-        lc-mongo
+  ```
+  $ docker stop lets-chat lc-mongo
+  lets-chat
+  lc-mongo
+  ```
 
   Delete the containers:  
-        $ docker rm lets-chat lc-mongo
-        lets-chat
-        lc-mongo
+  ```
+  $ docker rm lets-chat lc-mongo
+  lets-chat
+  lc-mongo
+  ```
 
   Congratulations, you've pulled and run your first Docker-based web app.  Now you will prepare the images to run them on the IBM Containers service in the cloud.
 
@@ -165,24 +171,32 @@ Now that you have pulled and run your images locally, it is time to tag them for
 2. First tag your MongoDB image.  Remember to use your namespace from the first command below to replace `[NAMESPACE]` in the tag and push commands below.
 
   List your images:  
-        $ docker images
-        REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-        mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
-        sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  ```
+  $ docker images
+  REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+  mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
+  sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  ```
 
-  Make note of your namespace:
-        $ cf ic namespace get
-        ibm_containers_demo_eu
+  Make note of your namespace:  
+  ```
+  $ cf ic namespace get
+  ibm_containers_demo_eu
+  ```
 
-  Tag your Mongo image in a Bluemix-compatible format:
-        $ docker tag -f mongo registry.eu-gb.bluemix.net/[NAMESPACE]/mongo
+  Tag your Mongo image in a Bluemix-compatible format:  
+  ```
+  $ docker tag -f mongo registry.eu-gb.bluemix.net/[NAMESPACE]/mongo
+  ```
 
-  List your images again, now showing the newly tagged image:
-        $ docker images
-        REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-        mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
-        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
-        sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  List your images again, now showing the newly tagged image:  
+  ```
+  $ docker images
+  REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+  mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
+  registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
+  sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  ```
 
   Note that the `IMAGE ID` column did not change for the Mongo image.  Since we are not modifying the image, but rather simply giving it another name, the `IMAGE ID` stays the same and allows us to reuse the existing container image as-is.
 
