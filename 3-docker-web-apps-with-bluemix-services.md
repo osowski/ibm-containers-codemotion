@@ -16,7 +16,7 @@
 
 **In this lab**, you will learn how to bind Bluemix Services to Docker containers, deploy existing applications with one-click via the *Deploy to Bluemix Button*, and understand how the IBM Bluemix DevOps Pipeline can build & deploy your container images automatically.
 
-Use IBM Containers to run Docker containers in a hosted cloud environment on IBM Bluemix™. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
+Use [IBM Containers](http://www.ibm.com/cloud-computing/bluemix/solutions/open-architecture/) to run Docker containers in a hosted cloud environment on IBM Bluemix™. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
 
 Containers are virtual software objects that include all the elements that an application needs to run. Each container includes just the app and its dependencies, running as an isolated process on the host operating system. Therefore, it has the benefits of resource isolation and allocation, but is more portable and efficient. Containers help you build high-quality apps, fast.
 
@@ -79,9 +79,9 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
 3. Walk through Deploy step of pipeline
 
-## Task 4: Run your web app TBD
+## Task 4: Run your web app
 
-1. Get public ip of your deployed container via IDS, CLI, or UI.
+1. Get Public IP of your deployed container.  This can be found through the Bluemix Delivery Pipeline output of the **Deploy** stage.  Alternatively, you can see this from the Bluemix UI or the IBM Containers CLI via the `cf ic ps` command.
 
 2. Go to http://[YOUR_PUBLIC_IP]:8080 in your browser and you've got your web app up & running!  No coding or command line needed!
 

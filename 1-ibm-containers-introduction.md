@@ -13,9 +13,9 @@
 
 ## What is IBM Containers?
 
-**In this lab**, you will learn how to get started using IBM Containers, a hosted offering for managing containers on IBM Bluemix™.
+**In this lab**, you will learn how to get started using IBM Containers, a hosted offering for managing Docker containers on IBM Bluemix™.
 
-Use IBM Containers to run Docker containers in a hosted cloud environment on IBM Bluemix™. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
+Use [IBM Containers](http://www.ibm.com/cloud-computing/bluemix/solutions/open-architecture/) to run Docker containers in a hosted cloud environment on IBM Bluemix™. IBM Containers helps you build and deploy containers where you can package your applications and services. Each container is based on an image format, includes a set of standard operations, and is an execution environment in itself.
 
 Containers are virtual software objects that include all the elements that an application needs to run. Each container includes just the app and its dependencies, running as an isolated process on the host operating system. Therefore, it has the benefits of resource isolation and allocation, but is more portable and efficient. Containers help you build high-quality apps, fast.
 
