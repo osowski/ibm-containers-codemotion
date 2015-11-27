@@ -67,12 +67,12 @@ In this lab, you will work with two public images, Let's Chat and MongoDB.  Firs
 3. You can verify these images are correct and compatible by running the applications locally.
 
   Start a Mongo instance:  
-          $ docker run -d --name lc-mongo mongo  
-          6ef19c325f6fda8f5c0277337dd797d4e31113daa7da92fbe85fe70557bfcb49
+        $ docker run -d --name lc-mongo mongo  
+        6ef19c325f6fda8f5c0277337dd797d4e31113daa7da92fbe85fe70557bfcb49
 
   Start a Let's Chat instance:    
-        $ docker run -d --name lets-chat --link lc-mongo:mongo -p 8080:8080 sdelements/lets-chat
-        4180a983e329947196e317563037bfd0da093ab89add16911de90534c69a7822
+    $ docker run -d --name lets-chat --link lc-mongo:mongo -p 8080:8080 sdelements/lets-chat
+    4180a983e329947196e317563037bfd0da093ab89add16911de90534c69a7822
 
 4. Access the application through your browser.  Depending on your local configuration, you may be able to use localhost as the hostname, but the most common configuration will be using `docker-machine` and will need to acquire the IP address as below.
 
