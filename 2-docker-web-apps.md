@@ -203,58 +203,66 @@ Now that you have pulled and run your images locally, it is time to tag them for
 2. Next, tag your Let's Chat image.  Remember to use your namespace from the first command below to replace `[NAMESPACE]` in the tag and push commands below.
 
   Tag your Let's Chat image in a Bluemix-compatible format:  
-        $ docker tag -f sdelements/lets-chat registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
+  ```
+  $ docker tag -f sdelements/lets-chat registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
+  ```
 
   List your images again, now showing the newly tagged image:  
-        $ docker images
-        REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
-        mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
-        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
-        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat   latest              2409eb7b9e8c        4 weeks ago         241.5 MB
-        sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  ```
+  $ docker images
+  REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+  mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
+  registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
+  registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat   latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
+  ```
 
 3. Due to a current networking issue, you will need to wrap your base Let's Chat image with a simple Dockerfile to ensure network connectivity.  
-   1. To do so, create a new directory called `wrapper`
+  1. To do so, create a new directory called `wrapper`
         mkdir wrapper
-   2. Switch to that directory and run the following command to create a Dockerfile
+  2. Switch to that directory and run the following command to create a Dockerfile
         cd wrapper
         echo "FROM sdelements/lets-chat:latest" > Dockerfile
         echo "CMD (sleep 60; npm start)" >> Dockerfile
-   3. This will create a new Dockerfile that we can build a temporary image from.
+  3. This will create a new Dockerfile that we can build a temporary image from.
         docker build -t registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat .
-   4. You will now use this image below to push to Bluemix instead of the base `lets-chat` image
+  4. You will now use this image below to push to Bluemix instead of the base `lets-chat` image
 
 4. Now that your images are tagged in the correct format, you can push them to your private registry on Bluemix.  This allows the IBM Container service to run your container images on the cloud.
 
   Push your Mongo image to your Bluemix registry:  
-        $ docker push registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
-        The push refers to a repository [registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo] (len: 1)
-        Sending image list
-        Pushing repository registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo (1 tags)
-        Image 68e42ff590bd already pushed, skipping
-        Image b4c4e8b590a7 already pushed, skipping
-        f037c6d892c5: Image successfully pushed
-        1a64ad3ccff1: Image successfully pushed
-        7f85ac94fbfc: Image successfully pushed
-        ...
-        a08422dd6a11: Image successfully pushed
-        99e2f2cde1c3: Image successfully pushed
-        202e2c1fe066: Image successfully pushed
-        Pushing tag for rev [202e2c1fe066] on {https://registry.eu-gb.bluemix.net/v1/repositories/ibm_containers_demo_eu/mongo/tags/latest}
+  ```
+  $ docker push registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
+  The push refers to a repository [registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo] (len: 1)
+  Sending image list
+  Pushing repository registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo (1 tags)
+  Image 68e42ff590bd already pushed, skipping
+  Image b4c4e8b590a7 already pushed, skipping
+  f037c6d892c5: Image successfully pushed
+  1a64ad3ccff1: Image successfully pushed
+  7f85ac94fbfc: Image successfully pushed
+  ...
+  a08422dd6a11: Image successfully pushed
+  99e2f2cde1c3: Image successfully pushed
+  202e2c1fe066: Image successfully pushed
+  Pushing tag for rev [202e2c1fe066] on {https://registry.eu-gb.bluemix.net/v1/repositories/ibm_containers_demo_eu/mongo/tags/latest}
+  ```
 
   Push your Let's Chat image to your Bluemix registry:  
-        $ docker push registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
-        The push refers to a repository [registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat] (len: 1)
-        Sending image list
-        Pushing repository registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat (1 tags)
-        Image adb3157c92fa already pushed, skipping
-        Image ed1f86248ba8 already pushed, skipping
-        Image 60643f301b72 already pushed, skipping
-        ...
-        Image 48b1e23d7a1a already pushed, skipping
-        Image ca11de166bed already pushed, skipping
-        Image 2409eb7b9e8c already pushed, skipping
-        Pushing tag for rev [2409eb7b9e8c] on {https://registry.eu-gb.bluemix.net/v1/repositories/ibm_containers_demo_eu/lets-chat/tags/latest}
+  ```
+  $ docker push registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
+  The push refers to a repository [registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat] (len: 1)
+  Sending image list
+  Pushing repository registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat (1 tags)
+  Image adb3157c92fa already pushed, skipping
+  Image ed1f86248ba8 already pushed, skipping
+  Image 60643f301b72 already pushed, skipping
+  ...
+  Image 48b1e23d7a1a already pushed, skipping
+  Image ca11de166bed already pushed, skipping
+  Image 2409eb7b9e8c already pushed, skipping
+  Pushing tag for rev [2409eb7b9e8c] on {https://registry.eu-gb.bluemix.net/v1/repositories/ibm_containers_demo_eu/lets-chat/tags/latest}
+  ```
 
    Now your images are up in the cloud, in your hosted registry, and ready to run on Bluemix!  But first, take a moment to understand what is inside the images you just pushed!
 
@@ -309,52 +317,68 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
 
 2. Now run your Mongo container just like you did locally, except this time use `cf ic` instead of `docker` to point to Bluemix.         
   Run your Mongo instance:  
-        $ cf ic run --name lc-mongo -p 27017 -m 512 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
-        71eb28dc-4d95-4a6d-bcaa-93f2382e48b5
+  ```
+  $ cf ic run --name lc-mongo -p 27017 -m 512 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
+  71eb28dc-4d95-4a6d-bcaa-93f2382e48b5
+  ```
 
   Show the running container instances.  Wait for a state of `RUNNING` before you proceed:  
-        $ cf ic ps
-        CONTAINER ID        IMAGE                                                            COMMAND             CREATED             STATUS                   PORTS               NAMES
-        7ebf51a3-35a        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo:latest   ""                  45 seconds ago      Running 27 seconds ago   27017/tcp           lc-mongo
+  ```
+  $ cf ic ps
+  CONTAINER ID        IMAGE                                                            COMMAND             CREATED             STATUS                   PORTS               NAMES
+  7ebf51a3-35a        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo:latest   ""                  45 seconds ago      Running 27 seconds ago   27017/tcp           lc-mongo
+  ```
 
 3. Next run your Let's Chat container just like you did locally, again using `cf ic` instead of `docker` to point to Bluemix.
 
   Run your Let's Chat instance:  
-        $ cf ic run --name lets-chat --link lc-mongo:mongo -p 8080 -m 256 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
-        a5dc5e0d-8eae-44a2-9f8d-548112bec250
+  ```
+  $ cf ic run --name lets-chat --link lc-mongo:mongo -p 8080 -m 256 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
+  a5dc5e0d-8eae-44a2-9f8d-548112bec250
+  ```
 
   Show the running container instances.  Wait for a state of `RUNNING` before you proceed:  
-        $ cf ic ps
-        CONTAINER ID        IMAGE                                                                COMMAND             CREATED             STATUS                   PORTS               NAMES
-        d368a598-69d        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat:latest   ""                  10 seconds ago      Building 7 seconds ago   8080/tcp            lets-chat
-        7ebf51a3-35a        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo:latest       ""                  2 minutes ago       Running a minute ago     27017/tcp           lc-mongo
+  ```
+  $ cf ic ps
+  CONTAINER ID        IMAGE                                                                COMMAND             CREATED             STATUS                   PORTS               NAMES
+  d368a598-69d        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat:latest   ""                  10 seconds ago      Building 7 seconds ago   8080/tcp            lets-chat
+  7ebf51a3-35a        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo:latest       ""                  2 minutes ago       Running a minute ago     27017/tcp           lc-mongo
+  ```
 
 4. Finally, you may need to expose your Let's Chat container to the public internet, so you and your team can start chatting!  The IBM Containers command line tool will attempt to expose your container for you if you have room left in your Public IP Address quota.
 
   If not, you'll run the `ip list` command to see which IPs are available and then bind one to your running container.
 
   List available IP addresses for your account:  
-        $ cf ic ip list
-        Number of allocated public IP addresses:  2
+  ```
+  $ cf ic ip list
+  Number of allocated public IP addresses:  2
 
-        IpAddress        ContainerId   
-        134.XXX.YYY.ZZ0       
-        134.XXX.YYY.ZZ1
+  IpAddress        ContainerId   
+  134.XXX.YYY.ZZ0       
+  134.XXX.YYY.ZZ1
+  ```      
 
   If you have no available IP addresses in the response, you can request one:  
-        $ cf ic ip request
-        Successfully requested ip 134.XXX.YYY.ZZZ
+  ```
+  $ cf ic ip request
+  Successfully requested ip 134.XXX.YYY.ZZZ
+  ```
 
   Bind an available IP address for your account:  
-        $ cf ic ip bind 134.XXX.YYY.ZZ0 lets-chat
-        OK
-        The IP address was bound successfully
+  ```
+  $ cf ic ip bind 134.XXX.YYY.ZZ0 lets-chat
+  OK
+  The IP address was bound successfully
+  ```
 
-  Show running containers with bound IP information now visible:
-        $ cf ic ps
-        CONTAINER ID        IMAGE                                                                COMMAND             CREATED              STATUS                  PORTS                          NAMES
-        d368a598-69d        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat:latest   ""                  About a minute ago   Running a minute ago    134.XXX.YYY.ZZ0:8080->8080/tcp   lets-chat
-        7ebf51a3-35a        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo:latest       ""                  3 minutes ago        Running 3 minutes ago   27017/tcp                      lc-mongo
+  Show running containers with bound IP information now visible:  
+  ```
+  $ cf ic ps
+  CONTAINER ID        IMAGE                                                                COMMAND             CREATED              STATUS                  PORTS                          NAMES
+  d368a598-69d        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat:latest   ""                  About a minute ago   Running a minute ago    134.XXX.YYY.ZZ0:8080->8080/tcp   lets-chat
+  7ebf51a3-35a        registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo:latest       ""                  3 minutes ago        Running 3 minutes ago   27017/tcp                      lc-mongo
+  ```
 
 5. Check out your running app in your browser, at the IP you just bound.  Remember to use port `8080`!
 
