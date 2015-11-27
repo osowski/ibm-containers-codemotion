@@ -218,15 +218,21 @@ Now that you have pulled and run your images locally, it is time to tag them for
   ```
 
 3. Due to a current networking issue, you will need to wrap your base Let's Chat image with a simple Dockerfile to ensure network connectivity.  
-  1. To do so, create a new directory called `wrapper`
-        mkdir wrapper
-  2. Switch to that directory and run the following command to create a Dockerfile
-        cd wrapper
-        echo "FROM sdelements/lets-chat:latest" > Dockerfile
-        echo "CMD (sleep 60; npm start)" >> Dockerfile
-  3. This will create a new Dockerfile that we can build a temporary image from.
-        docker build -t registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat .
-  4. You will now use this image below to push to Bluemix instead of the base `lets-chat` image
+  1. To do so, create a new directory called `wrapper`  
+  ```
+  mkdir wrapper
+  ```
+  2. Switch to that directory and run the following command to create a Dockerfile  
+  ```
+  cd wrapper
+  echo "FROM sdelements/lets-chat:latest" > Dockerfile
+  echo "CMD (sleep 60; npm start)" >> Dockerfile
+  ```
+  3. This will create a new Dockerfile that we can build a temporary image from.  
+  ```
+  docker build -t registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat .
+  ```
+  4. You will now use this image below to push to Bluemix instead of the base `lets-chat` image.  
 
 4. Now that your images are tagged in the correct format, you can push them to your private registry on Bluemix.  This allows the IBM Container service to run your container images on the cloud.
 
