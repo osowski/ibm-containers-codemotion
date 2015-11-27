@@ -154,7 +154,6 @@ Now that you have pulled and run your images locally, it is time to tag them for
           docker ps
           docker images
 
-
 2. First tag your MongoDB image.  Remember to use your namespace from the first command below to replace `[NAMESPACE]` in the tag and push commands below.
 
          $ docker images
