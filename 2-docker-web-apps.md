@@ -244,11 +244,21 @@ To solve this issue, IBM Containers provides **Vulnerability Advisor**, a pre-in
 
 3. Click on the **Mongo** image and you are taken to the container deployment page.  You won't deploy your container from here, but you can see the vulnerability assessment in full detail.  
 
-  On the right side of the screen, you can see...
+  On the right side of the screen, you can see your image's *Vulnerability Assessment* as well as your quota information.  The icon should read *Safe to Deploy* based on your Mongo image upload.
 
-4. TBD Look at packages
+4. Click on **View the vulnerability report for this image**. This will bring you to the assessment details page with two tabs: **Vulnerable Packages** and **Policy Violations**.  
 
-5. TBD Look at policies
+  The *Vulnerable Packages* tab shows you the number of packages scanned, the number of vulnerable packages present in your image, and the number of relevant security notices attached to any of those vulnerable packages.  Your image should now around 107 packages scanned with 0 vulnerable packages and 0 security notices.
+
+  The *Policy Violations* tab shows you how the image compares against your organization's security policies.  This will show the number of rules the image was validated against and any possible policy violations.  Your Mongo image should show around 27 policy rules with 2 associated policy violations (being Password Age and Password Length).  
+
+  As an additional homework assignment, you can create your own Dockerfile for MongoDB that builds on top of this image but fixes those security issues.  For now, you can click back in your browser to go to the image details page.
+
+5. Click on **Manage your org's policies**.  Here you are presented with two boxes - **Deployment Settings for Containers** and **Image Deployment Impact**.  
+
+  The *Deployment Settings for Containers* allows users with the appropriate level of authority to control which images can be deployed based on the vulnerability status.  You can see the multiple options that allows users to *Warn* or *Block* image deployment.
+
+  The *Image Deployment Impact* shows a summary view of the state of all images in your registry.  Images can have statuses of *Deployment Blocked*, *Deploy with Caution*, and *Safe to Deploy*.  This gives you a quick look into which images are troublesome and which images are secure across your entire registry.
 
 6. Return to the [Bluemix Catalog](https://console.eu-gb.bluemix.net/catalog/) and review the vulnerability assessment for the Let's Chat image.  You can do this by clicking on the purple **lets-chat** icon and viewing the same vulnerability information on the right hand side of the page.
 
