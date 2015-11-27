@@ -81,7 +81,7 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
 ## Task 4: Run your web app
 
-1. Get Public IP of your deployed container.  This can be found through the Bluemix Delivery Pipeline output of the **Deploy** stage via **View logs and history**.  
+1. Get Public IP of your deployed container.  This can be found through the Bluemix Delivery Pipeline output of the **Deploy** stage via the **View logs and history** link.  
 
   The specific line will look something like `Public IP address of lets-chat-a_1 is 134.XXX.YYY.ZZZ and the TEST_URL is http://134.XXX.YYY.ZZZ:8080`.
 
