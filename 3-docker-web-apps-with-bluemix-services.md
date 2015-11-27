@@ -3,7 +3,7 @@
 
 > **Difficulty**: Intermediate
 
-> **Time**: 25 minutes
+> **Time**: 35 minutes
 
 > **Tasks**:
 >- [Prerequisites](#prerequisites)
@@ -83,7 +83,7 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
 1. Get Public IP of your deployed container.  This can be found through the Bluemix Delivery Pipeline output of the **Deploy** stage via **View logs and history**.  
 
-  The specific line will look something like `Public IP address of lets-chat-a_1 is 134.XXX.YYY.ZZZ and the TEST_URL is http://134.XXX.YYY.ZZZ:8080`. 
+  The specific line will look something like `Public IP address of lets-chat-a_1 is 134.XXX.YYY.ZZZ and the TEST_URL is http://134.XXX.YYY.ZZZ:8080`.
 
   Alternatively, you can see this from the Bluemix UI or the IBM Containers CLI via the `cf ic ps` command.
 
