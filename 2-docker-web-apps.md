@@ -176,6 +176,11 @@ Now that you have pulled and run your images locally, it is time to tag them for
 
 2. Next, tag your Let's Chat image.  Remember to use your namespace from the first command below to replace `[NAMESPACE]` in the tag and push commands below.
 
+[//]: # (TBD Use temporary wrapper Dockerfile)
+[//]: # (FROM sdelements/lets-chat:latest)
+[//]: # (CMD (sleep 60; npm start))
+[//]: # (END TBD)
+
          $ docker images
          REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
          mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
@@ -227,7 +232,27 @@ Now that you have pulled and run your images locally, it is time to tag them for
 
 ## Task 3: Verify security vulnerabilities
 
-TBD VA
+One of the fundamental aspects of Docker containers is reuse and the ability to base your containers on top of other containers.  Think of it as inheritance for infrastructure!  But with that comes some heavy responsibility to understand what code you are running on top of and what code you are bringing into your infrastructure through a `docker pull`.  
+
+To solve this issue, IBM Containers provides **Vulnerability Advisor**, a pre-integrated security scanning tool that will alert you of vulnerable images and can even be configured to prevent deployment of those images.  For now, you will look over the vulnerability assessment of the images you just pushed.
+
+1. Go to the [Bluemix Dashboard](https://console.eu-gb.bluemix.net/?direct=classic/#/resources) and click on **CATALOG**.
+
+2. Hover over the purple icon for **Mongo**.  This is the Mongo image that you pulled from the public DockerHub registry and pushed into your private registry.
+
+  You will see a pop-up with the vulnerability assessment shown inline.  This is a red/yellow/green scale.  Your Mongo image should be a green status of "Okay".  
+
+3. Click on the **Mongo** image and you are taken to the container deployment page.  You won't deploy your container from here, but you can see the vulnerability assessment in full detail.  
+
+  On the right side of the screen, you can see...
+
+4. TBD Look at packages
+
+5. TBD Look at policies
+
+6. Return to the [Bluemix Catalog](https://console.eu-gb.bluemix.net/catalog/) and review the vulnerability assessment for the Let's Chat image.  You can do this by clicking on the purple **lets-chat** icon and viewing the same vulnerability information on the right hand side of the page.
+
+You have reviewed your pushed images, which were sourced from a public repository, and can now safely deploy them on your hosted Bluemix account.  This is a key step in making sure you are running the code which you expect to be running and you are not opening your organization up to security issues, at the expense of agility.  You still want to stay secure, even when moving at light-speed!
 
 ## Task 4: Run your web app
 
@@ -245,7 +270,7 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
          registry.eu-gb.bluemix.net/ibm-mobilefirst-starter                    latest              5996bb6e51a1        13 days ago         770.4 MB
 
 2. Now run your Mongo container just like you did locally, except this time use `cf ic` instead of `docker` to point to Bluemix.         
-         $ cf ic run --name lc-mongo -p 27017 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
+         $ cf ic run --name lc-mongo -p 27017 -m 512 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
          71eb28dc-4d95-4a6d-bcaa-93f2382e48b5
          $ cf ic ps
          CONTAINER ID        IMAGE                                                            COMMAND             CREATED             STATUS                   PORTS               NAMES
@@ -253,7 +278,7 @@ Now that you've pushed your images to Bluemix and reviewed the contents of those
 
 3. Next run your Let's Chat container just like you did locally, again using `cf ic` instead of `docker` to point to Bluemix.
 
-         $ cf ic run --name lets-chat --link lc-mongo:mongo -p 8080 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
+         $ cf ic run --name lets-chat --link lc-mongo:mongo -p 8080 -m 256 registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat
          a5dc5e0d-8eae-44a2-9f8d-548112bec250
          $ cf ic ps
          CONTAINER ID        IMAGE                                                                COMMAND             CREATED             STATUS                   PORTS               NAMES
