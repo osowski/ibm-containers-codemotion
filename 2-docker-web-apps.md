@@ -115,8 +115,6 @@ Now that you have pulled and run your images locally, it is time to tag them for
 
          Targeted space IBM_Containers_Demo_Org_EU
 
-
-
          API endpoint:   https://api.eu-gb.bluemix.net (API version: 2.40.0)   
          User:           osowski@us.ibm.com   
          Org:            IBM_Containers_Demo_Org   
@@ -176,12 +174,7 @@ Now that you have pulled and run your images locally, it is time to tag them for
 
 2. Next, tag your Let's Chat image.  Remember to use your namespace from the first command below to replace `[NAMESPACE]` in the tag and push commands below.
 
-[//]: # (TBD Use temporary wrapper Dockerfile)
-[//]: # (FROM sdelements/lets-chat:latest)
-[//]: # (CMD (sleep 60; npm start))
-[//]: # (END TBD)
-
-         $ docker images
+        $ docker images
          REPOSITORY                                                    TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
          mongo                                                         latest              202e2c1fe066        7 days ago          261.6 MB
          registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo       latest              202e2c1fe066        7 days ago          261.6 MB
@@ -196,9 +189,18 @@ Now that you have pulled and run your images locally, it is time to tag them for
          registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat   latest              2409eb7b9e8c        4 weeks ago         241.5 MB
          sdelements/lets-chat                                          latest              2409eb7b9e8c        4 weeks ago         241.5 MB
 
-  Note that again the `IMAGE ID` column did not change for the Let's Chat image.  Since we are not modifying the image, but rather simply giving it another name, the `IMAGE ID` stays the same and allows us to reuse the existing container image as-is.
+3. Due to a current networking issue, you will need to wrap your base Let's Chat image with a simple Dockerfile to ensure network connectivity.
+  1. To do so, create a new directory called `wrapper`
+          mkdir wrapper
+  2. Switch to that directory and run the following command to create a Dockerfile
+           cd wrapper
+          echo "FROM sdelements/lets-chat:latest" > Dockerfile
+          echo "CMD (sleep 60; npm start)" >> Dockerfile
+  3. This will create a new Dockerfile that we can build a temporary image from.
+            docker build -t registry.eu-gb.bluemix.net/ibm_containers_demo_eu/lets-chat .
+  4. You will now use this image below to push to Bluemix instead of the base `lets-chat` image
 
-3. Now that your images are tagged in the correct format, you can push them to your private registry on Bluemix.  This allows the IBM Container service to run your container images on the cloud.
+4. Now that your images are tagged in the correct format, you can push them to your private registry on Bluemix.  This allows the IBM Container service to run your container images on the cloud.
 
          $ docker push registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo
          The push refers to a repository [registry.eu-gb.bluemix.net/ibm_containers_demo_eu/mongo] (len: 1)
@@ -240,7 +242,7 @@ To solve this issue, IBM Containers provides **Vulnerability Advisor**, a pre-in
 
 2. Hover over the purple icon for **Mongo**.  This is the Mongo image that you pulled from the public DockerHub registry and pushed into your private registry.
 
-  You will see a pop-up with the vulnerability assessment shown inline.  This is a red/yellow/green scale.  Your Mongo image should be a green status of "Okay".  
+  You will see a pop-up with the vulnerability assessment shown inline.  This is a red/yellow/green scale.  Your Mongo image should be a green status of **Safe to Deploy**.  
 
 3. Click on the **Mongo** image and you are taken to the container deployment page.  You won't deploy your container from here, but you can see the vulnerability assessment in full detail.  
 
