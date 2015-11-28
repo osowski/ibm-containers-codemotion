@@ -71,7 +71,7 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
   As the automation goes through forking the project into your own account, setting up a pipeline for your account, and building & deploying those images on Bluemix, you will be updated in the UI.  Once the status page returns complete after a few minutes, you can move on to the next Task.
 
-## Task 3: Review deployment automation steps TBD
+## Task 3: Review deployment automation steps
 
 Now that your project has been deployed to IBM Containers on Bluemix, let's review what really just happened.  Bluemix forked the GitHub project into a Jazz Hub project, IBM's hosted source code management platform.  Inside this project a build pipeline was imported from the `.bluemix/pipeline.yaml` file in the original repository.  This pipeline will automatically build the Docker image for Let's Chat, push it to your private registry in Bluemix, and then deploy a running container instance on IBM Containers.
 
@@ -95,7 +95,7 @@ Now that your project has been deployed to IBM Containers on Bluemix, let's revi
 
   Multiple deployment strategies are available, but by default *red_black* is selected to allow for maximum up-time of your container-based application.  Additional deployment strategies will be available soon.
 
-  The *Ports* of your image are available to be exposed here and you can expose all, some, or none, depending on your pipeline needs.
+  The *Ports* of your image are available to be exposed here and you can expose all, some, or none, depending on your pipeline needs.  Due to *IBM Containers* being a managed-Docker environment, you need to expose ports if you want your container to be accessible from other containers.  Otherwise, it will run fine but not be able to receive inbound communication from any other containers.  You only need to expose ports via the *image only format* (`-p 8080`), as the service will manage the host port mapping for all containers.
 
   The default deployment script is more than sufficient but can be modified to suit your needs, for something like dynamic linking, external lookups, integration with CMDBs or Software Config tools, etc.  You can also pass in `docker run` command-line arguments via the *Optional deploy arguments* field for things like `--link`, `--volume`, or `--env`.
 
