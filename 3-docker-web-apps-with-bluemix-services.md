@@ -73,11 +73,36 @@ Previous labs walked you through manually deploying containers on Bluemix from s
 
 ## Task 3: Review deployment automation steps TBD
 
-1. Walk through the Jazz Hub project, including what is in the GitHub project.
+Now that your project has been deployed to IBM Containers on Bluemix, let's review what really just happened.  Bluemix forked the GitHub project into a Jazz Hub project, IBM's hosted source code management platform.  Inside this project a build pipeline was imported from the `.bluemix/pipeline.yaml` file in the original repository.  This pipeline will automatically build the Docker image for Let's Chat, push it to your private registry in Bluemix, and then deploy a running container instance on IBM Containers.
 
-2. Walk through Build step of pipeline
+1. To view the project, right-click on **Created project successfully** and open the link in a new tab.  This will show you the standard project view with the forked code from GitHub.
 
-3. Walk through Deploy step of pipeline
+2. Right now, you are interested in the Build Pipeline that was automatically created, so click on **BUILD & DEPLOY** in the upper right.  This will take you to the Build Pipeline view of your project and show you the two stages that were created for build and deploy of your container image.
+
+3. Click on the gear icon in the top-right of the **Build Docker Images** box and select **Configure Stage**.  This will take you to the configuration view of your *Build* step.  
+
+4. At the top of the page, click on the **INPUT** tab.  Here you can see the pipeline will pull from the forked project automatically.  When creating projects from scratch, you can connect directly with public GitHub projects, however for ease of use, the *Deploy to Bluemix* button uses the forked repository for quicker deployments.
+
+5. Click on the **JOBS** button at the top of the page and you can see all the necessary information for building your image dynamically whenever a code change is pushed to your repository.  You can select which region, which organization, which space, and what to name your container image.  There is a default script that is included in this step which is more than sufficient, but you can modify it as needed.
+
+6. Scroll to the bottom and click **CANCEL**.
+
+7. Click on the gear icon in the top-right of the **Deploy Let's Chat Docker Image** box and select **Configure Stage**.  This will take you to the configuration view of your *Deploy* step.
+
+8. At the top of the page, click on the **INPUT** tab again.  Here you will see the inputs for your *Deploy* step.  This step can be run manually or automatically, taking the input from the previous step's output (that being your *Build* step in this case).
+
+9. Click on the **JOBS** button at the top of the page and you can see all the necessary information for deploying your image to IBM Containers on Bluemix.  This again allows you to select your specific region, organization, space, and image to deploy.
+
+  Multiple deployment strategies are available, but by default *red_black* is selected to allow for maximum up-time of your container-based application.  Additional deployment strategies will be available soon.
+
+  The *Ports* of your image are available to be exposed here and you can expose all, some, or none, depending on your pipeline needs.
+
+  The default deployment script is more than sufficient but can be modified to suit your needs, for something like dynamic linking, external lookups, integration with CMDBs or Software Config tools, etc.  You can also pass in `docker run` command-line arguments via the *Optional deploy arguments* field for things like `--link`, `--volume`, or `--env`.
+
+10. Once you have reviewed the **Deploy** step, click **CANCEL** at the bottom of the page.
+
+  You have now reviewed the automated deployment of a Docker-container project on IBM Containers, running on Bluemix.  For additional homework, you can create your own [IBM Bluemix DevOps Services](https://hub.jazz.net/) project pulling from a public GitHub repository and build your own pipeline to deploy Docker containers on Bluemix.
+
 
 ## Task 4: Run your web app
 
