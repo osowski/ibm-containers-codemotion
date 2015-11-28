@@ -14,3 +14,5 @@
 
 
 - Set up continuous delivery for IBM Containers - [https://developer.ibm.com/bluemix/docs/set-up-continuous-delivery-ibm-containers/](https://developer.ibm.com/bluemix/docs/set-up-continuous-delivery-ibm-containers/)  
+
+- Follow [@IBMBluemix](https://twitter.com/IBMBluemix) & [@CldTec](https://twitter.com/CldTec) for updates!
