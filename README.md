@@ -18,12 +18,12 @@ For those needing an introduction on Docker, please consult https://docs.docker.
 
 In this lab, you will learn how to get started using IBM Containers, a hosted offering for managing Docker containers on IBM Bluemix™.
 
-## Lab 2. [Docker Web Apps, running on IBM Containers](2-docker-webapps.md)
+## Lab 2. [Docker Web Apps, running on IBM Containers](2-docker-web-apps.md)
 **Difficulty**: Intermediate
 
 In this lab, you will learn how to push images to your hosted private registry on Bluemix, evaluate security vulnerabilities for your pushed images, and run an application with two linked container images.  
 
-## Lab 3. [Docker Web Apps with IBM Bluemix services](3-docker-webapps-with-bluemix-services.md)
+## Lab 3. [Docker Web Apps with IBM Bluemix services](3-docker-web-apps-with-bluemix-services.md)  
 **Difficulty**: Intermediate
 
 In this lab, you will learn how to bind Bluemix Services to Docker containers, deploy existing applications with one-click via the *Deploy to Bluemix Button*, and understand how the IBM Bluemix DevOps Pipeline can build & deploy your container images automatically.
