@@ -37,7 +37,7 @@ IBM Containers have the advantage of running on IBM Bluemix and because of that,
 1. Go to the [Bluemix Dashboard](https://console.eu-gb.bluemix.net/?direct=classic/#/resources) and click on **CREATE APP**.
 2. Select any runtme and click **NEXT**.  Either NodeJS or Liberty is recommended, but any runtime is acceptable as we won't be interacting with the deployed application, just leveraging its bound services.
 3. Enter a unique name for your application and click **DEPLOY**.  This must be unique across all the entire Bluemix region your are working in.  For instance, "testapp" is a less than desirable name.  Something like "[YOUR_NAME]-bridge-app" is much better.  This will become the hostname for your app once deployed on Bluemix.
-4. Once you're application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
+4. Once your application has been deployed and you are taken to the **Getting Started** page, click on the **Overview** tab on the left.
 5. Now you will need to bind a MongoDB service instance to your application.  This will then expose the credentials to your container at runtime.  Click on **NEW SERVICE OR API**.
 6. Search for or scroll to **MongoDB by Compose** and click on it.
 7. The credentials that you will need to enter on this page will be shared with you during the lab.  These credentials are Host, Port, Username, and Password.  Enter the provided credentials and click **CREATE**.  All other defaults on the page are acceptable.
